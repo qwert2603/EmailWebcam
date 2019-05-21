@@ -1,7 +1,6 @@
 package com.qwert2603.email_webcam
 
 import java.io.File
-import java.text.SimpleDateFormat
 import java.util.*
 import javax.activation.DataHandler
 import javax.activation.FileDataSource
@@ -47,7 +46,7 @@ object EmailUtils {
         val messageBodyPart = MimeBodyPart()
         val source = FileDataSource(file)
         messageBodyPart.dataHandler = DataHandler(source)
-        messageBodyPart.fileName = file.name + SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date())
+        messageBodyPart.fileName = file.name
         multipart.addBodyPart(messageBodyPart)
 
         message.setContent(multipart)

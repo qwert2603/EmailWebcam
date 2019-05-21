@@ -3,6 +3,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+        config {
+            storeFile file('/home/alex/StudioProjects/key.jks')
+            storePassword key_store_password
+            keyAlias 'email_webcam'
+            keyPassword key_store_password
+        }
+    }
+
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.qwert2603.email_webcam"
@@ -10,7 +19,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        archivesBaseName = "vk_webcam_$versionName"
+        archivesBaseName = "email_webcam_$versionName"
 
         buildConfigField 'String', "SENDER_EMAIL", sender_email
         buildConfigField 'String', "SENDER_PASSWORD", sender_password
@@ -25,6 +34,7 @@ android {
             shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -33,7 +43,7 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.1'
+    implementation 'androidx.core:core-ktx:1.0.2'
 
     implementation 'com.sun.mail:android-mail:1.6.0'
     implementation 'com.sun.mail:android-activation:1.6.0'
